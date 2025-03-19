@@ -8,17 +8,11 @@ const OldSchoolCartonComponent = ({ cartoonGenres, cartoons }) => {
   const pathName = usePathname();
   const typeOfPage = "cartoon";
 
-  const [cartoonGenresData, setCartoonGenresData] = useState();
-  const [cartoonsData, setCartoonsData] = useState();
+  const [cartoonGenresData, setCartoonGenresData] = useState(cartoonGenres);
+  const [cartoonsData, setCartoonsData] = useState(cartoons);
   const [selectedCartoons, setSelectedCartoons] = useState("");
   const [cartoonsDataFilter, setCartoonsDataFilter] = useState();
   const [selectedCartoonsName, setSelectedCartoonsName] = useState("Old School Cartoons");
-
-  useEffect(() => {
-    setCartoonGenresData(cartoonGenres);
-    setCartoonsData(cartoons);
-    setCartoonsDataFilter(cartoons);
-  }, [cartoonGenres, cartoons])
 
   // split to get year only
   const splitYear = (publicYear) => {
@@ -49,6 +43,11 @@ const OldSchoolCartonComponent = ({ cartoonGenres, cartoons }) => {
       setCartoonsDataFilter(cartoons);
     }
   }
+
+  // set CartoonsDataFilter
+  useEffect(() => {
+    setCartoonsDataFilter(cartoons);
+  }, [cartoons])
 
   return (
     <div className='m-12'>
